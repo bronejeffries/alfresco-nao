@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model name="ml:molsmodel" xmlns="http://www.alfresco.org/model/dictionary/1.0">
+
+    <!-- Optional meta-data about the model -->
+    <description>Document Model For Mols</description>
+    <author>Brian</author>
+    <version>1.0</version>
+
+    <imports>
+        <!-- Import Alfresco Dictionary Definitions -->
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+        <!-- Import Alfresco Content Domain Model Definitions -->
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+        <!-- Import Alfresco System Model Definitions -->
+        <import uri="http://www.alfresco.org/model/system/1.0" prefix="sys"/>
+    </imports>
+
+    <!-- Custom namespace for the mols -->
+    <namespaces>
+        <namespace uri="http://www.mols.com/model/mols/1.0" prefix="ml"/>
+    </namespaces>
+
+    <constraints>
+        
+    </constraints>
+
+    <!-- ===============================================================================================================
+        Constraints, Types, and Aspects go here...
+        -->
+
+    <types>
+        <!--
+            ACME Enterprise-wide Document root type.
+            All other custom document types would extend this one.
+        -->
+        <type name="ml:reports_holder">
+            <title>Reports Holder</title>
+            <description>Contains Report Volumes Folders</description>
+            <parent>cm:folder</parent>
+            <mandatory-aspects>
+                <aspect>ml:report_holder_details</aspect>
+            </mandatory-aspects>
+        </type>
+        <type name="ml:report_volume">
+            <title>Reports Volume</title>
+            <description>Contains various valuation reports</description>
+            <parent>cm:folder</parent>
+            <mandatory-aspects>
+                <aspect>ml:reports_vol</aspect>
+            </mandatory-aspects>
+        </type>
+        <type name="ml:valuation_report">
+            <title>Report</title>
+            <parent>cm:content</parent>
+            <mandatory-aspects>
+                <aspect>ml:report_details</aspect>
+                <aspect>ml:instruction_letter_details</aspect>
+                <aspect>ml:report_holder_details</aspect>
+                <aspect>ml:reports_vol</aspect>
+            </mandatory-aspects>
+        </type>
+    </types>
+
+    <aspects>
+        <!-- A document can have security classification applied and
+             faceted search is specifically enabled for best performance and we change
+             default index config to not tokenize the value. -->
+        
+        <aspect name="ml:instruction_letter_details">
+            <title>Instruction Letter Aspect</title>
+            <description>Instruction Letter Details</description>
+            <properties>
+                <property name="ml:letter_author">
+                    <title>Instruction letter Author</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+                <property name="ml:letter_quote_no">
+                    <type>d:number</type>
+                    <mandatory>true</mandatory>
+                </property>
+                <property name="ml:letter_from_address">
+                    <title>Sender's Address</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+                <property name="ml:date_sent">
+                    <title>Sender's Date</title>
+                    <type>d:date</type>
+                    <mandatory>true</mandatory>
+                </property>
+                <property name="ml:date_recieved">
+                    <title>Date of Reciept by Mols</title>
+                    <type>d:date</type>
+                    <mandatory>true</mandatory>
+                </property>
+                <property name="ml:letter_subject">
+                    <title>Valuation Subject</title>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+                <property name="ml:project_title">
+                    <title>Valuation Project</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="ml:report_details">
+            <title>Contains Report Details</title>
+            <description>This represents a valuation report</description>
+            <properties>
+                <property name="ml:report_submission_date">
+                    <title>Valuation Report Submission Date</title>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="ml:report_holder_details">
+            <title>Contains Report Holder Details</title>
+            <description>This details a folder that Contains report volumes</description>
+            <properties>
+                <property name="ml:holder_reference_no">
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+        <aspect name="ml:reports_vol">
+            <title>Report Holder Volume</title>
+            <description>This details a folder that Contains report volumes</description>
+            <properties>
+                <property name="ml:vol_number">
+                    <type>d:number</type>
+                    <mandatory>true</mandatory>
+                </property>
+            </properties>
+        </aspect>
+        
+    </aspects>
+
+</model>
