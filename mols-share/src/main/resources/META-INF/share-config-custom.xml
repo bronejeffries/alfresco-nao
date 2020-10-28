@@ -20,6 +20,10 @@
         <aspects>
             <visible>
                 <aspect name="acme:securityClassified"/>
+                <aspect name="ml:instruction_letter_details"/>
+                <aspect name="ml:report_details"/>
+                <aspect name="ml:report_holder_details"/>
+                <aspect name="ml:reports_vol"/>
             </visible>
             <addable> <!-- defaults to visible config -->
             </addable>
@@ -30,6 +34,11 @@
             <!-- Define the ACME base doc type as decedent from cm:content -->
             <type name="cm:content">
                 <subtype name="acme:document"/>
+                <subtype name="ml:valuation_report"/>
+            </type>
+            <type name="cm:folder">
+                <subtype name="ml:reports_holder"/>
+                <subtype name="ml:report_volume"/>
             </type>
         </types>
     </config>
@@ -46,6 +55,7 @@
                 <form labelId="search.form.label.cm_content" descriptionId="search.form.desc.cm_content">cm:content
                 </form>
                 <form labelId="search.form.label.cm_folder" descriptionId="search.form.desc.cm_folder">cm:folder</form>
+                <form labelId="type.ml_valuation_report" descriptionId="search.form.desc.ml_valuation_report">ml:valuation_report</form>
 
                 <!-- Custom type -->
                 <form labelId="form.label.advancedsearch.acmeDocument"
@@ -411,6 +421,371 @@
                     </field>
                     <field id="acme:securityClassification" label-id="form.field.label.acme.securityClassification"
                            set="acmeDocSet"/>
+                </appearance>
+            </form>
+        </forms>
+    </config>
+
+    <config evaluator="aspect" condition="ml:instruction_letter_details">
+        <forms>
+            <form>
+                <field-visibility>
+                    <show id="ml:letter_author" />
+                    <show id="ml:letter_quote_no" />
+                    <show id="ml:letter_from_address" />
+                    <show id="ml:date_sent" />
+                    <show id="ml:date_recieved" />
+                    <show id="ml:letter_subject" />
+                    <show id="ml:project_title" />
+                </field-visibility>
+                <appearance>                    
+                    <field id="ml:letter_author" label-id="prop.ml_letter_author" />
+                    <field id="ml:letter_quote_no" label-id="prop.ml_letter_quote_no" />
+                    <field id="ml:letter_from_address" label-id="prop.ml_letter_from_address" />
+                    <field id="ml:date_sent" label-id="prop.ml_date_sent" />
+                    <field id="ml:date_recieved" label-id="prop.ml_date_recieved" />
+                    <field id="ml:letter_subject" label-id="prop.ml_letter_subject" />
+                    <field id="ml:project_title" label-id="prop.ml_project_title" />
+                </appearance>
+            </form>
+        </forms>
+    </config>
+
+    <config evaluator="aspect" condition="ml:report_details">
+        <forms>
+            <form>
+                <field-visibility>
+                    <show id="ml:report_submission_date" />
+                </field-visibility>
+                <appearance>                    
+                    <field id="ml:report_submission_date" label-id="prop.ml_report_submission_date" />
+                </appearance>
+            </form>
+        </forms>
+    </config>
+
+    <config evaluator="aspect" condition="ml:report_holder_details">
+        <forms>
+            <form>
+                <field-visibility>
+                    <show id="cm:name" />
+                    <show id="ml:holder_reference_no" />
+                </field-visibility>
+                <appearance>                    
+                    <field id="cm:name" />
+                    <field id="ml:holder_reference_no" label-id="prop.ml_holder_reference_no" />
+                </appearance>
+            </form>
+        </forms>
+    </config>
+
+    <config evaluator="aspect" condition="ml:reports_vol">
+        <forms>
+            <form>
+                <field-visibility>
+                    <show id="cm:name" />
+                    <show id="ml:vol_number" />
+                </field-visibility>
+                <appearance>                    
+                    <field id="cm:name" />
+                    <field id="ml:vol_number" label-id="prop.ml_vol_number" />
+                </appearance>
+            </form>
+        </forms>
+    </config>
+
+    <!-- View and Edit forms for ml:valuaion_report -->
+    <config evaluator="model-type" condition="ml:valuation_report">
+        <forms>
+            <form>
+                <field-visibility>
+                    <show id="cm:name"/>
+                    <show id="cm:content" force="true"/>
+                    <show id="cm:title" force="true"/>
+                    <show id="cm:description" force="true"/>
+                    <show id="mimetype"/>
+                    <show id="app:editInline" force="true"/>
+
+                    <!-- ACME custom props -->
+                    <show id="ml:letter_author" />
+                    <show id="ml:letter_quote_no" />
+                    <show id="ml:letter_from_address" />
+                    <show id="ml:date_sent" />
+                    <show id="ml:date_recieved" />
+                    <show id="ml:letter_subject" />
+                    <show id="ml:project_title" />
+                    <show id="ml:report_submission_date" />
+                </field-visibility>
+                <appearance>
+                    <field id="cm:name">
+                        <control>
+                            <control-param name="maxLength">255</control-param>
+                        </control>
+                    </field>
+                    <field id="cm:title">
+                        <control template="/org/alfresco/components/form/controls/textfield.ftl"/>
+                    </field>
+                    <field id="cm:content" label-id="">
+                        <control>
+                            <control-param name="editorAppearance">explorer</control-param>
+                        </control>
+                    </field>
+                    <field id="mimetype">
+                        <control template="/org/alfresco/components/form/controls/hidden.ftl">
+                            <control-param name="contextProperty">mimeType</control-param>
+                        </control>
+                    </field>
+                    <field id="app:editInline">
+                        <control template="/org/alfresco/components/form/controls/hidden.ftl">
+                            <control-param name="contextProperty">editInline</control-param>
+                        </control>
+                    </field>
+
+                    <!-- ACME Props appearance -->
+                    <set id="acmeDocSet" appearance="bordered-panel" label-id="form.set.label.acme.document"/>
+                    <field id="ml:letter_author" label-id="prop.ml_letter_author" />
+                    <field id="ml:letter_quote_no" label-id="prop.ml_letter_quote_no" />
+                    <field id="ml:letter_from_address" label-id="prop.ml_letter_from_address" />
+                    <field id="ml:date_sent" label-id="prop.ml_date_sent" />
+                    <field id="ml:date_recieved" label-id="prop.ml_date_recieved" />
+                    <field id="ml:letter_subject" label-id="prop.ml_letter_subject" />
+                    <field id="ml:project_title" label-id="prop.ml_project_title" />
+                    <field id="ml:report_submission_date" label-id="prop.ml_report_submission_date" />
+                </appearance>
+            </form>
+
+            <!-- Document Library pop-up Edit Metadata form -->
+            <form id="doclib-simple-metadata">
+                <field-visibility>
+                    <show id="cm:name"/>
+                    <show id="cm:content" force="true"/>
+                    <show id="cm:title" force="true"/>
+                    <show id="cm:description" force="true"/>
+                    <show id="mimetype"/>
+                    <show id="app:editInline" force="true"/>
+
+                    <!-- ACME custom props -->
+                    <show id="ml:letter_author" />
+                    <show id="ml:letter_quote_no" />
+                    <show id="ml:letter_from_address" />
+                    <show id="ml:date_sent" />
+                    <show id="ml:date_recieved" />
+                    <show id="ml:letter_subject" />
+                    <show id="ml:project_title" />
+                    <show id="ml:report_submission_date" />
+                </field-visibility>
+                <appearance>
+                    <field id="cm:name">
+                        <control>
+                            <control-param name="maxLength">255</control-param>
+                        </control>
+                    </field>
+                    <field id="cm:title">
+                        <control template="/org/alfresco/components/form/controls/textfield.ftl"/>
+                    </field>
+                    <field id="cm:content" label-id="">
+                        <control>
+                            <control-param name="editorAppearance">explorer</control-param>
+                        </control>
+                    </field>
+                    <field id="mimetype">
+                        <control template="/org/alfresco/components/form/controls/hidden.ftl">
+                            <control-param name="contextProperty">mimeType</control-param>
+                        </control>
+                    </field>
+                    <field id="app:editInline">
+                        <control template="/org/alfresco/components/form/controls/hidden.ftl">
+                            <control-param name="contextProperty">editInline</control-param>
+                        </control>
+                    </field>
+
+                    <!-- ACME Props appearance -->
+                    <set id="acmeDocSet" appearance="bordered-panel" label-id="form.set.label.acme.document"/>
+                    <field id="ml:letter_author" label-id="prop.ml_letter_author" />
+                    <field id="ml:letter_quote_no" label-id="prop.ml_letter_quote_no" />
+                    <field id="ml:letter_from_address" label-id="prop.ml_letter_from_address" />
+                    <field id="ml:date_sent" label-id="prop.ml_date_sent" />
+                    <field id="ml:date_recieved" label-id="prop.ml_date_recieved" />
+                    <field id="ml:letter_subject" label-id="prop.ml_letter_subject" />
+                    <field id="ml:project_title" label-id="prop.ml_project_title" />
+                    <field id="ml:report_submission_date" label-id="prop.ml_report_submission_date" />
+                </appearance>
+            </form>
+
+                <!-- Document Library Inline Edit form -->
+             <form id="doclib-inline-edit">
+                <field-visibility>
+                    <show id="cm:name"/>
+                    <show id="cm:content" force="true"/>
+                    <show id="cm:title" force="true"/>
+                    <show id="cm:description" force="true"/>
+                    <show id="mimetype"/>
+                    <show id="app:editInline" force="true"/>
+
+                    <!-- ACME custom props -->
+                    <show id="ml:letter_author" />
+                    <show id="ml:letter_quote_no" />
+                    <show id="ml:letter_from_address" />
+                    <show id="ml:date_sent" />
+                    <show id="ml:date_recieved" />
+                    <show id="ml:letter_subject" />
+                    <show id="ml:project_title" />
+                    <show id="ml:report_submission_date" />
+                </field-visibility>
+                <appearance>
+                    <field id="cm:name">
+                        <control>
+                            <control-param name="maxLength">255</control-param>
+                        </control>
+                    </field>
+                    <field id="cm:title">
+                        <control template="/org/alfresco/components/form/controls/textfield.ftl"/>
+                    </field>
+                    <field id="cm:content" label-id="">
+                        <control>
+                            <control-param name="editorAppearance">explorer</control-param>
+                        </control>
+                    </field>
+                    <field id="mimetype">
+                        <control template="/org/alfresco/components/form/controls/hidden.ftl">
+                            <control-param name="contextProperty">mimeType</control-param>
+                        </control>
+                    </field>
+                    <field id="app:editInline">
+                        <control template="/org/alfresco/components/form/controls/hidden.ftl">
+                            <control-param name="contextProperty">editInline</control-param>
+                        </control>
+                    </field>
+
+                    <!-- ACME Props appearance -->
+                    <set id="acmeDocSet" appearance="bordered-panel" label-id="form.set.label.acme.document"/>
+                    <field id="ml:letter_author" label-id="prop.ml_letter_author" />
+                    <field id="ml:letter_quote_no" label-id="prop.ml_letter_quote_no" />
+                    <field id="ml:letter_from_address" label-id="prop.ml_letter_from_address" />
+                    <field id="ml:date_sent" label-id="prop.ml_date_sent" />
+                    <field id="ml:date_recieved" label-id="prop.ml_date_recieved" />
+                    <field id="ml:letter_subject" label-id="prop.ml_letter_subject" />
+                    <field id="ml:project_title" label-id="prop.ml_project_title" />
+                    <field id="ml:report_submission_date" label-id="prop.ml_report_submission_date" />
+                </appearance>
+            </form>
+        </forms>
+    </config>
+
+    <!-- Create and search forms for ml:valuaion_report -->
+    <config evaluator="model-type" condition="ml:valuation_report">
+        <forms>
+            <form>
+                <field-visibility>
+                    <show id="cm:name"/>
+                    <show id="cm:content" force="true"/>
+                    <show id="cm:title" force="true"/>
+                    <show id="cm:description" force="true"/>
+                    <show id="mimetype"/>
+                    <show id="app:editInline" force="true"/>
+
+                    <!-- ACME custom props -->
+                    <show id="ml:letter_author" />
+                    <show id="ml:letter_quote_no" />
+                    <show id="ml:letter_from_address" />
+                    <show id="ml:date_sent" />
+                    <show id="ml:date_recieved" />
+                    <show id="ml:letter_subject" />
+                    <show id="ml:project_title" />
+                    <show id="ml:report_submission_date" />
+                </field-visibility>
+                <appearance>
+                    <field id="cm:name">
+                        <control>
+                            <control-param name="maxLength">255</control-param>
+                        </control>
+                    </field>
+                    <field id="cm:title">
+                        <control template="/org/alfresco/components/form/controls/textfield.ftl"/>
+                    </field>
+                    <field id="cm:content" label-id="">
+                        <control>
+                            <control-param name="editorAppearance">explorer</control-param>
+                        </control>
+                    </field>
+                    <field id="mimetype">
+                        <control template="/org/alfresco/components/form/controls/hidden.ftl">
+                            <control-param name="contextProperty">mimeType</control-param>
+                        </control>
+                    </field>
+                    <field id="app:editInline">
+                        <control template="/org/alfresco/components/form/controls/hidden.ftl">
+                            <control-param name="contextProperty">editInline</control-param>
+                        </control>
+                    </field>
+
+                    <!-- ACME Props appearance -->
+                    <set id="acmeDocSet" appearance="bordered-panel" label-id="form.set.label.acme.document"/>
+                    <field id="ml:letter_author" label-id="prop.ml_letter_author" />
+                    <field id="ml:letter_quote_no" label-id="prop.ml_letter_quote_no" />
+                    <field id="ml:letter_from_address" label-id="prop.ml_letter_from_address" />
+                    <field id="ml:date_sent" label-id="prop.ml_date_sent" />
+                    <field id="ml:date_recieved" label-id="prop.ml_date_recieved" />
+                    <field id="ml:letter_subject" label-id="prop.ml_letter_subject" />
+                    <field id="ml:project_title" label-id="prop.ml_project_title" />
+                    <field id="ml:report_submission_date" label-id="prop.ml_report_submission_date" />
+                </appearance>
+            </form>
+            <!-- Search form -->
+            <form id="search">
+                <field-visibility>
+                    <show id="cm:name"/>
+                    <show id="cm:content" force="true"/>
+                    <show id="cm:title" force="true"/>
+                    <show id="cm:description" force="true"/>
+                    <show id="mimetype"/>
+                    <show id="app:editInline" force="true"/>
+
+                    <!-- ACME custom props -->
+                    <show id="ml:letter_author" />
+                    <show id="ml:letter_quote_no" />
+                    <show id="ml:letter_from_address" />
+                    <show id="ml:date_sent" />
+                    <show id="ml:date_recieved" />
+                    <show id="ml:letter_subject" />
+                    <show id="ml:project_title" />
+                    <show id="ml:report_submission_date" />
+                </field-visibility>
+                <appearance>
+                    <field id="cm:name">
+                        <control>
+                            <control-param name="maxLength">255</control-param>
+                        </control>
+                    </field>
+                    <field id="cm:title">
+                        <control template="/org/alfresco/components/form/controls/textfield.ftl"/>
+                    </field>
+                    <field id="cm:content" label-id="">
+                        <control>
+                            <control-param name="editorAppearance">explorer</control-param>
+                        </control>
+                    </field>
+                    <field id="mimetype">
+                        <control template="/org/alfresco/components/form/controls/hidden.ftl">
+                            <control-param name="contextProperty">mimeType</control-param>
+                        </control>
+                    </field>
+                    <field id="app:editInline">
+                        <control template="/org/alfresco/components/form/controls/hidden.ftl">
+                            <control-param name="contextProperty">editInline</control-param>
+                        </control>
+                    </field>
+
+                    <!-- ACME Props appearance -->
+                    <set id="acmeDocSet" appearance="bordered-panel" label-id="form.set.label.acme.document"/>
+                    <field id="ml:letter_author" label-id="prop.ml_letter_author" />
+                    <field id="ml:letter_quote_no" label-id="prop.ml_letter_quote_no" />
+                    <field id="ml:letter_from_address" label-id="prop.ml_letter_from_address" />
+                    <field id="ml:date_sent" label-id="prop.ml_date_sent" />
+                    <field id="ml:date_recieved" label-id="prop.ml_date_recieved" />
+                    <field id="ml:letter_subject" label-id="prop.ml_letter_subject" />
+                    <field id="ml:project_title" label-id="prop.ml_project_title" />
+                    <field id="ml:report_submission_date" label-id="prop.ml_report_submission_date" />
                 </appearance>
             </form>
         </forms>
