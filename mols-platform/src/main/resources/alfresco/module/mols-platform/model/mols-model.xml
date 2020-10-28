@@ -76,7 +76,7 @@
                     <mandatory>true</mandatory>
                 </property>
                 <property name="ml:letter_quote_no">
-                    <type>d:number</type>
+                    <type>d:text</type>
                     <mandatory>true</mandatory>
                 </property>
                 <property name="ml:letter_from_address">
@@ -132,7 +132,7 @@
             <description>This details a folder that Contains report volumes</description>
             <properties>
                 <property name="ml:vol_number">
-                    <type>d:number</type>
+                    <type>d:int</type>
                     <mandatory>true</mandatory>
                 </property>
             </properties>
