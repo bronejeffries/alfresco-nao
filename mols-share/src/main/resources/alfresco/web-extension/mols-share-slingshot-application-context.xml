@@ -19,6 +19,7 @@
       <property name="resourceBundles">
          <list>
             <value>alfresco.web-extension.messages.mols-share</value>
+            <value>alfresco.web-extension.messages.mols-model</value>
          </list>
       </property>
    </bean>

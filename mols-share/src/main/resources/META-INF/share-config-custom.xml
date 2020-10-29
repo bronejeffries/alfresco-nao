@@ -542,7 +542,6 @@
                     </field>
 
                     <!-- ACME Props appearance -->
-                    <set id="acmeDocSet" appearance="bordered-panel" label-id="form.set.label.acme.document"/>
                     <field id="ml:letter_author" label-id="prop.ml_letter_author" />
                     <field id="ml:letter_quote_no" label-id="prop.ml_letter_quote_no" />
                     <field id="ml:letter_from_address" label-id="prop.ml_letter_from_address" />
