@@ -66,6 +66,7 @@
                             <constraint type="LIST">
                                 <parameter name="allowedValues">
                                     <list>
+                                    	<value></value>
                                         <value>A J BWIRAGURA</value>
                                         <value>NSAMBA GAYIINA</value>
                                         <value>LUCY KABEGE</value>
@@ -160,6 +161,7 @@
                             <constraint type="LIST">
                                 <parameter name="allowedValues">
                                     <list>
+                                    	<value></value>
                                         <value>Residential</value>
                                         <value>Commercial</value>
                                         <value>Agricultural</value>
@@ -185,6 +187,7 @@
 						<constraint type="LIST">
 							<parameter name="allowedValues">
 								<list>
+									<value></value>
 									<value>Developed</value>
 									<value>Vacant</value>
 								</list>
@@ -246,6 +249,7 @@
                             <constraint type="LIST">
                                 <parameter name="allowedValues">
                                     <list>
+                                    	<value></value>
                                         <value>COMPENSATION VALUATION</value>
                                         <value>STAMP DUTY VALUATION</value>
                                         <value>MARKET VALUATION</value>
