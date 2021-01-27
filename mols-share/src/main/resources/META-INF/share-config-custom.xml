@@ -41,11 +41,11 @@ alfresco/tomcat/shared/classes/alfresco/web-extension/share-config-custom.xml
 				<subtype name="ml:valuation_report" />
 				<subtype name="ml:project_report" />
 				<subtype name="ml:stamp_duty"/>
+				<subtype name="ml:infrast_reports_holder" />
 			</type>
 			<type name="cm:folder">
 				<subtype name="ml:reports_holder" />
 				<subtype name="ml:report_volume" />
-				<subtype name="ml:infrast_reports_holder" />
 			</type>
 		</types>
 	</config>

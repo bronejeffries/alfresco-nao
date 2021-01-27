@@ -40,7 +40,7 @@
 			<description>
 				Contains Report Volumes Folders
 			</description>
-			<parent>cm:folder</parent>
+			<parent>cm:content</parent>
 			<properties>
 				<property name="ml:project_name">
 					<title>
@@ -116,10 +116,12 @@
 		</type>
 		<type name="ml:valuation_report">
 			<title>
-				Report
+				General Valuation
 			</title>
 			<parent>cm:content</parent>
 			<mandatory-aspects>
+				<aspect>ml:reports_vol</aspect>
+				<aspect>ml:report_holder_details</aspect>
 				<aspect>ml:report_details</aspect>
 				<aspect>ml:report_holder_details</aspect>
 			</mandatory-aspects>
@@ -143,20 +145,30 @@
 					<type>d:text</type>
 					<mandatory>false</mandatory>
 				</property>
+				<property name="ml:block">
+					<title>Block</title>
+					<type>d:text</type>
+					<mandatory>false</mandatory>
+				</property>
 				<property name="ml:date">
 					<title>Date</title>
 					<type>d:date</type>
 					<mandatory>true</mandatory>
 				</property>
 				<property name="ml:folio">
-					<title>Folio</title>
+					<title>FRV-LRV</title>
+					<type>d:text</type>
+					<mandatory>false</mandatory>
+				</property>
+				<property name="ml:road_name">
+					<title>Road Name</title>
 					<type>d:text</type>
 					<mandatory>false</mandatory>
 				</property>
 				<property name="ml:user">
 					<title>User</title>
 					<type>d:text</type>
-					<mandatory>true</mandatory>
+					<mandatory>false</mandatory>
 					<constraints>
                             <constraint type="LIST">
                                 <parameter name="allowedValues">
@@ -177,12 +189,12 @@
 				<property name="ml:land_area">
 					<title>Land Area</title>
 					<type>d:int</type>
-					<mandatory>true</mandatory>
+					<mandatory>false</mandatory>
 				</property>
 				<property name="ml:land_development">
 					<title>Land Development</title>
 					<type>d:text</type>
-					<mandatory>true</mandatory>
+					<mandatory>false</mandatory>
 					<constraints>
 						<constraint type="LIST">
 							<parameter name="allowedValues">
@@ -203,6 +215,35 @@
 
 			</properties>
 		</type>
+
+		<type name="ml:rating_files">
+			<title>Rating Files</title>
+			<parent>cm:content</parent>
+			<properties>
+				<property name="ml:plot_no">
+					<title>Plot No.</title>
+					<type>d:text</type>
+					<mandatory>false</mandatory>
+				</property>
+				<property name="ml:road_or_street">
+					<title>Road or Street</title>
+					<type>d:text</type>
+					<mandatory>false</mandatory>
+				</property>
+				<property name="ml:folio_no">
+					<title>FRV-LRV_NO</title>
+					<type>d:text</type>
+					<mandatory>false</mandatory>
+				</property>
+				<property name="ml:land_area_acres">
+					<title>Land Area(Acres)</title>
+					<type>d:int</type>
+					<mandatory>false</mandatory>
+				</property>
+
+			</properties>
+		</type>
+		
 	</types>
 	<aspects>
 		<!--
@@ -280,7 +321,6 @@
 		</aspect>
 		<aspect name="ml:report_holder_details">
 			<title>
-				ype / Purpose of Valuation
 				Contains Report Holder Details
 			</title>
 			<description>
@@ -301,16 +341,16 @@
 				This details a folder that Contains report
 			</description>
 			<properties>
-				<!--
-				<property name="ml:vol_number">
+				
+				<property name="ml:file_name">
 				<type>
-				d:int
+				d:text
 				</type>
 				<mandatory>
-				true
+				false
 				</mandatory>
 				</property>
-				-->
+				
 				<property name="ml:open_date">
 					<type>d:date</type>
 					<mandatory>false</mandatory>
