@@ -56,7 +56,7 @@ limitations under the License.
 	</property>
 	</bean>
 	-->
-	<bean id="ReferenceOnUpdateAttachBehavior" class="com.lands.behaviour.ReferenceAttachBehaviour" init-method="init">
+	<!-- <bean id="ReferenceOnUpdateAttachBehavior" class="com.lands.behaviour.ReferenceAttachBehaviour" init-method="init">
 		<property name="nodeService">
 			<ref bean="NodeService" />
 		</property>
@@ -87,6 +87,6 @@ limitations under the License.
 		<property name="policyComponent">
 			<ref bean="policyComponent" />
 		</property>
-	</bean>
+	</bean> -->
 
 </beans>

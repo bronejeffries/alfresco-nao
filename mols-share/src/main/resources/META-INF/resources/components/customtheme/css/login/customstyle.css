@@ -1,0 +1,12 @@
+.theme-company-logo{
+    background-image: url(../../images/logo.png) !important;
+    height: 70px !important;
+    width: 330px !important;
+}
+
+body.UNKNOWN {
+    background-color: #FCF9E6 !important;
+    /* background-image: url(../../images/background.png) !important; */
+    background-repeat: no-repeat;
+    background-size: cover;
+}

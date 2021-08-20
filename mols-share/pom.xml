@@ -33,6 +33,29 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>net.alchim31.maven</groupId>
+                <artifactId>yuicompressor-maven-plugin</artifactId>
+                <version>1.5.1</version>
+                <executions>
+                    <execution>
+                        <id>compressyui</id>
+                        <phase>procsess-resources</phase>
+                        <goals>
+                            <goal>compress</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <skip>true</skip>
+                    <excludes>
+                        <exclude>src/main/resources/META-INF/resources/components/customlicense/*</exclude>
+                        <exclude>src/main/resources/META-INF/resources/components/customtheme/*</exclude>
+                        <exclude>src/main/resources/META-INF/resources/components/projectone/*</exclude>
+                        <exclude>src/main/resources/META-INF/resources/login/*</exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
