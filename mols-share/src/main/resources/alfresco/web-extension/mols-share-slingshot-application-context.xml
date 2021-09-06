@@ -20,6 +20,7 @@
          <list>
             <value>alfresco.web-extension.messages.mols-share</value>
             <value>alfresco.web-extension.messages.mols-model</value>
+            <value>alfresco.web-extension.messages.custom-props</value>
          </list>
       </property>
    </bean>
