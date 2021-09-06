@@ -67,7 +67,7 @@ function customise_dashboard_dashlets() {
     if ($('.card').length==0) {
         if ($(".dashlet.webview").length==0) {
          
-            $(".dashlet").addClass('card shadow border border-left-0 border-success');
+            $(".dashlet").addClass('card shadow border border-left-0 border-primary');
             Array.from($('.card')).forEach(card=>{
                 var card_body = $(card).children().detach();
                 // console.log(card_body); 
@@ -79,7 +79,7 @@ function customise_dashboard_dashlets() {
     
             Array.from($('.card')).forEach(card=>{
                 var card_header = $(card).find('.card-body>.title').detach(); 
-                $(card).prepend('<div class="card-header bg-success"></div>'); 
+                $(card).prepend('<div class="card-header bg-primary"></div>'); 
                 card_header.appendTo($(card).find('.card-header')); 
                 $(card).find('.card-body>.title').remove()
                 })
@@ -100,9 +100,9 @@ function customise_dashboard_dashlets() {
 // //////////////////////// customise buttons //////////////////
 function customise_buttons() {
     $(".preloader").show();
-    $('button').addClass('btn btn-success')
+    $('button').addClass('btn btn-info')
     // $('.align-right>.first-child').addClass('btn btn-sm btn-success')
-    $("#CREATE_SITE_DIALOG_OK_label").addClass('btn-success')
+    $("#CREATE_SITE_DIALOG_OK_label").addClass('btn-info')
     $("#CREATE_SITE_DIALOG_CANCEL_label").addClass('btn-danger')
     $(".unassigned-task").addClass('badge badge-primary')
     $('table').addClass('table')
@@ -127,7 +127,7 @@ function hideLoader() {
 function customise_columnView() {
     if ($('.card').length==0) {
         $(".preloader").show();
-        $(".viewcolumn").addClass('card shadow border border-left-0 border-success');
+        $(".viewcolumn").addClass('card shadow border border-left-0 border-primary');
         Array.from($('.card')).forEach(card=>{
             var card_body = $(card).children().detach();
             // console.log(card_body); 
@@ -139,7 +139,7 @@ function customise_columnView() {
 
         Array.from($('.card')).forEach(card=>{
             var card_header = $(card).find('.card-body>.header-bar').detach(); 
-            $(card).prepend('<div class="card-header bg-success"></div>'); 
+            $(card).prepend('<div class="card-header bg-primary"></div>'); 
             card_header.appendTo($(card).find('.card-header')); 
             $(card).find('.card-body>.header-bar').remove()
             })
@@ -155,7 +155,7 @@ function customise_columnView() {
 //////////// customise nav ////////////////////////////
 function customise_nav() {
     $(".preloader").show();
-    $('.yui-b.yui-resize').addClass('scroll-sidebar bg-success');
+    $('.yui-b.yui-resize').addClass('scroll-sidebar bg-primary');
     var nav_body = $('.scroll-sidebar').children().detach()
     $('.scroll-sidebar').append('<nav class="sidebar-nav"></nav>')
     nav_body.appendTo($('.scroll-sidebar>.sidebar-nav'))
@@ -168,7 +168,7 @@ function customise_nav() {
 //////////// customise main ////////////////////////////
 function customise_main() {
     $(".preloader").show();
-    $('#yui-main>.yui-b').addClass('container-fluid card shadow border border-success')
+    $('#yui-main>.yui-b').addClass('container-fluid card shadow border border-primary')
     $($('#yui-main>.yui-b').children()[0]).addClass('card-body').css('padding',"0px")
     hideLoader();
 }
@@ -181,7 +181,7 @@ function customise_siteFinder() {
     if ($(".card").length==0) {
         $(".preloader").show();
         $(".finder-wrapper").removeClass('finder-wrapper')
-        $(".theme-bg-color-3").add('bg-success').removeClass('theme-bg-color-3')
+        $(".theme-bg-color-3").add('bg-primary').removeClass('theme-bg-color-3')
         $(".site-finder").addClass('card shadow border border-left-0 border-success');
         Array.from($('.card')).forEach(card=>{
             var card_body = $(card).children().detach();
@@ -213,7 +213,7 @@ function customise_siteFinder() {
 
 function customise_modal_header(params) {
 
-    $(".dijitDialogTitleBar").addClass('bg-success')
+    $(".dijitDialogTitleBar").addClass('bg-primary')
 
 }
 
