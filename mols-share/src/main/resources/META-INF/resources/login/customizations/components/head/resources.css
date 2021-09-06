@@ -1,6 +1,6 @@
 :root{
    --cma-primary-color:#971A1E;
-   --cma-secondary-color:#BC9633;
+   --cma-secondary-color:#1d2adb;
 }
 
 .form-fields.login .form-field > span.yui-button {
@@ -63,7 +63,7 @@
  .alfresco-share .alf-header-menu-bar .alf-menu-group .dijitMenuPassive .dijitMenuItemHover, 
  .alfresco-share .alf-header-menu-bar .alf-menu-group .dijitMenuItemSelected {
     background-color: #ffffff !important;
-    color: #23A74C !important;
+    color: #2358a7 !important;
  }
  
  /* Sets the selection highlight colour on header menu items - more specific than class in AlfMenuBar */
