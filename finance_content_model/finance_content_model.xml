@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<model xmlns="http://www.alfresco.org/model/dictionary/1.0" name="fnao:finance_content_model">
+    <description>Finance Nao model</description>
+    <author>Brian</author>
+    <imports>
+        <import uri="http://www.alfresco.org/model/content/1.0" prefix="cm"/>
+        <import uri="http://www.alfresco.org/model/dictionary/1.0" prefix="d"/>
+    </imports>
+    <namespaces>
+        <namespace uri="http://www.finance_nao.com/model/finance/1.0" prefix="fnao"/>
+    </namespaces>
+    <data-types/>
+    <constraints/>
+    <types>
+        <type name="fnao:projectdocument">
+            <title>Project Document</title>
+            <description>Project Document</description>
+            <parent>cm:content</parent>
+            <properties>
+                <property name="fnao:project_name">
+                    <title>Project Name</title>
+                    <description>Project Name</description>
+                    <type>d:text</type>
+                    <mandatory>true</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                </property>
+                <property name="fnao:contract_number">
+                    <title>Contract Number</title>
+                    <description>Contract Number</description>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                </property>
+                <property name="fnao:contract_title">
+                    <title>Contract Title</title>
+                    <description>Contract Title</description>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                </property>
+                <property name="fnao:agency_contractor">
+                    <title>Agency Contractor</title>
+                    <description>Agency contractor</description>
+                    <type>d:text</type>
+                    <mandatory>false</mandatory>
+                    <index enabled="true">
+                        <tokenised>TRUE</tokenised>
+                        <facetable>false</facetable>
+                    </index>
+                </property>
+            </properties>
+            <associations/>
+            <overrides/>
+            <mandatory-aspects/>
+        </type>
+    </types>
+    <aspects/>
+</model>

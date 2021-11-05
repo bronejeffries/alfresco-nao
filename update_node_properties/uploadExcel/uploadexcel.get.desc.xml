@@ -1,0 +1,8 @@
+<webscript>
+    <shortname>Upload Excel</shortname>
+    <description>upload excel document that contains</description>
+    <url>/customscript/upload/excel</url>
+    <url>/customscript/upload/excel.html</url>
+    <format default="html">extension</format>
+    <authentication>user</authentication>
+ </webscript>

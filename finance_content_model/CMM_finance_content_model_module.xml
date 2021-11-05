@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?><module>
+   <id>CMM_finance_content_model</id>
+   <auto-deploy>true</auto-deploy>
+   <configurations>
+      
+      <!-- Document Library config section -->
+      <config condition="DocumentLibrary" evaluator="string-compare" replace="false">
+         <types>
+            <type name="cm:content">
+               <subtype label="Project Document" name="fnao:projectdocument"/>
+            </type>
+         </types>
+      </config>
+
+      <!-- Form configuration section - type -->
+      <config condition="fnao:projectdocument" evaluator="node-type">
+         <forms>
+            <form>
+               <field-visibility>
+                  <show id="cm:name"/>
+                  <show id="fnao:contract_number"/>
+                  <show id="fnao:contract_title"/>
+                  <show id="fnao:project_name"/>
+                  <show id="fnao:agency_contractor"/>
+               </field-visibility>
+               <appearance>
+                  <set appearance="whitespace" id="fnao:projectdocument_cmm_set0"/>
+                  <field id="fnao:project_name" set="fnao:projectdocument_cmm_set0">
+                  </field>
+                  <field id="cm:name" set="fnao:projectdocument_cmm_set0">
+                  </field>
+                  <field id="fnao:contract_title" set="fnao:projectdocument_cmm_set0">
+                  </field>
+                  <field id="fnao:agency_contractor" set="fnao:projectdocument_cmm_set0">
+                  </field>
+                  <field id="fnao:contract_number" set="fnao:projectdocument_cmm_set0">
+                  </field>
+               </appearance>
+            </form>
+            
+            <!-- Document Library pop-up Edit Metadata form -->
+            <form id="doclib-simple-metadata">
+               <edit-form template="../documentlibrary/forms/doclib-simple-metadata.ftl"/>
+               <field-visibility>
+                  <show id="cm:name"/>
+                  <show id="fnao:contract_number"/>
+                  <show id="fnao:contract_title"/>
+                  <show id="fnao:project_name"/>
+                  <show id="fnao:agency_contractor"/>
+               </field-visibility>
+               <appearance>
+                  <set appearance="whitespace" id="fnao:projectdocument_cmm_set0"/>
+                  <field id="fnao:project_name" set="fnao:projectdocument_cmm_set0">
+                  </field>
+                  <field id="cm:name" set="fnao:projectdocument_cmm_set0">
+                  </field>
+                  <field id="fnao:contract_title" set="fnao:projectdocument_cmm_set0">
+                  </field>
+                  <field id="fnao:agency_contractor" set="fnao:projectdocument_cmm_set0">
+                  </field>
+                  <field id="fnao:contract_number" set="fnao:projectdocument_cmm_set0">
+                  </field>
+               </appearance>
+            </form>
+            
+            <!-- Document Library Inline Edit form -->
+            <form id="doclib-inline-edit">
+               <field-visibility>
+                  <show id="cm:name"/>
+                  <show force="true" id="cm:content"/>
+                  <show force="true" id="cm:title"/>
+                  <show force="true" id="cm:description"/>
+               </field-visibility>
+               <appearance>
+                  <field id="cm:name">
+                    <control>
+                       <control-param name="maxLength">255</control-param>
+                    </control>
+                  </field>
+                  <field id="cm:title">
+                     <control template="/org/alfresco/components/form/controls/textfield.ftl"/>
+                  </field>
+                  <field id="cm:content" label-id="">
+                     <control>
+                        <control-param name="editorAppearance">explorer</control-param>
+                        <control-param name="forceEditor">true</control-param>
+                     </control>
+                  </field>
+               </appearance>
+            </form>
+         </forms>
+      </config>
+      
+      <!-- Form configuration section - aspect -->
+      
+      <!-- Entity form designer configuration -->
+      <config condition="FormDefinition" evaluator="string-compare">
+         <form-definition id="projectdocument">[{"elementconfig":{"label":"","appearance":"bordered-panel"},"pseudonym":"cmm/editor/layout/1cols","label":"cmm.form-editor.palette.one-column","type":["layout"],"column":[{"pseudonym":"cmm/editor/property/text","id":"cm:name","elementconfig":{"infoname":"cm:name","infolabel":"Name","infotype":"d:text"},"label":"Name [cm:name]","type":["property"]},{"pseudonym":"cmm/editor/property/text","id":"fnao:contract_number","elementconfig":{"infoname":"contract_number","infolabel":"Contract Number","infotype":"d:text"},"label":"Contract Number [contract_number]","type":["property"]},{"pseudonym":"cmm/editor/property/text","id":"fnao:contract_title","elementconfig":{"infoname":"contract_title","infolabel":"Contract Title","infotype":"d:text"},"label":"Contract Title [contract_title]","type":["property"]},{"pseudonym":"cmm/editor/property/text","id":"fnao:project_name","elementconfig":{"infoname":"project_name","infolabel":"Project Name","infotype":"d:text"},"label":"Project Name [project_name]","type":["property"]},{"pseudonym":"cmm/editor/property/text","id":"fnao:agency_contractor","elementconfig":{"infoname":"agency_contractor","infolabel":"Agency Contractor","infotype":"d:text"},"label":"Agency Contractor [agency_contractor]","type":["property"]}]}]</form-definition>
+      </config>
+
+   </configurations>
+</module>
